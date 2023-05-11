@@ -714,7 +714,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8438300676118740038, guid: 95a8a17d9b8e2c949836b83ea4bff5ad, type: 3}
+      - m_Target: {fileID: 8580006235341514802, guid: 5d794f51df95d3c4faf8fda59302bead, type: 3}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
