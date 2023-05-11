@@ -51,9 +51,9 @@ public class GameManager : MonoBehaviour
         if(survivalTimeText)
             survivalTimeText.text = "Time : " + Mathf.Floor(survivalTime * 100f) / 100f;
     }
-    void StartGame()
+    public void StartGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     void EndGame()
