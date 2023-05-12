@@ -294,6 +294,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6143297974351748451, guid: 2d9de20de3371d748b886b836ee638eb, type: 3}
   m_PrefabInstance: {fileID: 3906281250332127040}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &-1420799631604951147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7166501256436675107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec89ab5a4fc65194bbe3c2079060a25e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missile: {fileID: 8529418228792813828, guid: ba092928842d8c540b6197bf5fa1f80e, type: 3}
+  spawnOffset: {x: 0, y: 1}
+  fireRate: 0.5
 --- !u!114 &1054952904758107862
 MonoBehaviour:
   m_ObjectHideFlags: 0
