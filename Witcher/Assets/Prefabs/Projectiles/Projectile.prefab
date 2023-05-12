@@ -162,6 +162,10 @@ MonoBehaviour:
   stats:
     baseDamage: 100
     multiplier: 1
+  enemyTagNames: []
+  friendTagNames:
+  - DeadZone
+  hitEffect: {fileID: 0}
 --- !u!114 &957240316626980603
 MonoBehaviour:
   m_ObjectHideFlags: 0

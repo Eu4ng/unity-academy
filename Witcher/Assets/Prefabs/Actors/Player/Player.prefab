@@ -283,6 +283,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6143297974351748451, guid: 2d9de20de3371d748b886b836ee638eb, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 8224946761765093626, guid: 2d9de20de3371d748b886b836ee638eb, type: 3}
       propertyPath: deathEffect
       value: 
