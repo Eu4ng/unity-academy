@@ -5,8 +5,8 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     // 메테오 설정
-    [Header("Meteorite")]
-    public GameObject meteorite;
+    [Header("ObjectToSpawn")]
+    public List<GameObject> objectsToSpawn;
     public float meteoriteWidth = 1;
     int maxSpawnCounts;
 
@@ -56,10 +56,13 @@ public class SpawnManager : MonoBehaviour
         List<int> indices = new List<int>();
         GetRandomIndices(ref indices);
 
-        // 메테오 스폰
+        // 스폰시킬 오브젝트 선택
+        int indexToSpawn = Random.Range(0, objectsToSpawn.Count);
+
+        // 오브젝트 스폰
         foreach(int index in indices)
         {
-            Instantiate(meteorite, spawnPositions[index], Quaternion.Euler(Vector2.zero));
+            Instantiate(objectsToSpawn[indexToSpawn], spawnPositions[index], Quaternion.Euler(Vector2.zero));
         }
     }
     void CalculateSpawnPositions()
