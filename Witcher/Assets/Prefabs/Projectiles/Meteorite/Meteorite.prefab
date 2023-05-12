@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1890384017389844352, guid: c7657ed3275e69d428442fcad00fd4e9, type: 3}
+      propertyPath: m_Radius
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: -1890384017389844352, guid: c7657ed3275e69d428442fcad00fd4e9, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8589075680988094400, guid: c7657ed3275e69d428442fcad00fd4e9, type: 3}
       propertyPath: m_Name
       value: Meteorite
@@ -90,4 +98,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0396ddd5b3e0554bbe61d0b76f6e4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 9
