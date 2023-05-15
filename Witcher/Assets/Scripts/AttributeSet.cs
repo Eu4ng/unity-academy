@@ -11,8 +11,8 @@ public class AttributeSet : MonoBehaviour
     /* Attributes */
     // ÇÊµå
     float hp;
-    public float maxHp;
-    public float damageReduction = 0;
+    [SerializeField] float maxHp;
+    [SerializeField] float damageReduction = 0;
     bool isDead = false;
     public GameObject m_DamageText;
 
@@ -33,6 +33,10 @@ public class AttributeSet : MonoBehaviour
                 hp = value;
         }
     } // 0 ~ maxHp
+    public float MaxHp
+    {
+        get => maxHp;
+    }
     public float DamageReduction
     {
         get => damageReduction;
