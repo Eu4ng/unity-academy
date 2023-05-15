@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7686060872741995822}
   - component: {fileID: 7686060872741995823}
   - component: {fileID: 9142412697525287007}
-  - component: {fileID: 2944286484187410757}
+  - component: {fileID: -1348434029845615291}
   m_Layer: 0
   m_Name: Effect
   m_TagString: Untagged
@@ -96,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 7686060872741995820}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 69ab65a8eaabc5242a5f575ea40448f0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -107,7 +107,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2944286484187410757
+--- !u!114 &-1348434029845615291
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,3 +119,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcaf9fe8863a38c468814d002df7460c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Sprite: {fileID: 0}
+  m_AnimationClip: {fileID: 0}

@@ -77,11 +77,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.41666666
-    functionName: SelfDestroy
-    data: 
-    objectReferenceParameter: {fileID: 7686060872741995820, guid: 2ac0bc9eed7e36345a1e28f80c63a97d, type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []
