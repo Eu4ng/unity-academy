@@ -74,14 +74,16 @@ public class AttributeSet : MonoBehaviour
             ShowFloatingDamageText(damage);
         }
 
+        // 실제 데미지 계산은 마지막에 진행
+        // OnDamaged 이벤트가 OnDead 이벤트보다 선행되어야한다
         Hp -= damage * (1 - DamageReduction);
     }
 
     void ShowFloatingDamageText(float _damage)
     {
         // @TODO Instantiate 전에 GameObject 초기화하는 방법 모색중
-        GameObject instance = Instantiate(m_DamageText, gameObject.transform.position, Quaternion.Euler(Vector2.zero));
+        GameObject instance = Instantiate(m_DamageText);
         instance.GetComponent<FloatingDamageText>().m_Damage = (int)_damage;
-        instance.GetComponent<FloatingDamageText>().enabled = true;
+        instance.transform.position = gameObject.transform.position;
     }
 }
