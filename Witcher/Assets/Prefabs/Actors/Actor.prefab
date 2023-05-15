@@ -175,6 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 100
   damageReduction: 0
+  m_DamageText: {fileID: 4955558751786012016, guid: 30a80ed866577a14289496517e3dae30, type: 3}
 --- !u!114 &-3434267780308598183
 MonoBehaviour:
   m_ObjectHideFlags: 0

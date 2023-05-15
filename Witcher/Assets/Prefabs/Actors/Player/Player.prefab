@@ -326,4 +326,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  movableWidth: 3.4
+  movableWidth: 4

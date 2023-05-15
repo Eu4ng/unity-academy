@@ -14,6 +14,7 @@ public class AttributeSet : MonoBehaviour
     public float maxHp;
     public float damageReduction = 0;
     bool isDead = false;
+    public GameObject m_DamageText;
 
     // 프로퍼티
     public float Hp
@@ -48,7 +49,10 @@ public class AttributeSet : MonoBehaviour
 
     private void Awake()
     {
+        // 초기화
         Hp = maxHp;
+
+        // Dead 이벤트 등록
         OnDead += () => isDead = true;
     }
 
@@ -60,9 +64,20 @@ public class AttributeSet : MonoBehaviour
 
     public void Damaged(float damage)
     {
-        Hp -= damage * (1 - DamageReduction);
-
         if (!isDead)
+        {
             OnDamaged();
+            ShowFloatingDamageText(damage);
+        }
+
+        Hp -= damage * (1 - DamageReduction);
+    }
+
+    void ShowFloatingDamageText(float _damage)
+    {
+        // @TODO Instantiate 전에 GameObject 초기화하는 방법 모색중
+        GameObject instance = Instantiate(m_DamageText, gameObject.transform.position, Quaternion.Euler(Vector2.zero));
+        instance.GetComponent<FloatingDamageText>().m_Damage = (int)_damage;
+        instance.GetComponent<FloatingDamageText>().enabled = true;
     }
 }
