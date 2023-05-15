@@ -8,7 +8,7 @@ public class BackgroundScrolling : MonoBehaviour
 
     [SerializeField] float speed = 8f;
     float height = 16;
-    float distance = 0;
+    float m_Distance = 0;
     int backGroundIndex;
     int BackGroundIndex
     {
@@ -33,13 +33,14 @@ public class BackgroundScrolling : MonoBehaviour
         }
 
         // 이동 거리 기록
-        distance += translation;
-        if (distance >= height)
+        m_Distance += translation;
+        if (m_Distance >= height)
         {
             ResetPosition(BackGroundIndex);
             BackGroundIndex++;
-            distance = 0;
+            m_Distance = 0;
         }
+        PointManager.Get().Distance += translation;
     }
 
     void ResetPosition(int index)

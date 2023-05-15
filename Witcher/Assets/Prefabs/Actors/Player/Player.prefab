@@ -308,7 +308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missile: {fileID: 8529418228792813828, guid: ba092928842d8c540b6197bf5fa1f80e, type: 3}
   spawnOffset: {x: 0, y: 1}
-  fireRate: 0.5
+  fireRate: 0.2
 --- !u!114 &1054952904758107862
 MonoBehaviour:
   m_ObjectHideFlags: 0
