@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Point
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -3705429318971865333, guid: 9cb09a92e11d5c244a68d73c4b53deea, type: 3}
+      propertyPath: m_Stats.baseDamage
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1532840546527489145, guid: 9cb09a92e11d5c244a68d73c4b53deea, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

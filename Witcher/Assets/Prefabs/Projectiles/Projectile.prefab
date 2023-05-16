@@ -159,13 +159,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7f29a9638d8464fb4b506c920d4c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats:
-    baseDamage: 100
+  m_Stats:
+    baseDamage: 0
     multiplier: 1
-  enemyTagNames: []
-  friendTagNames:
+  m_EnemyTagNames: []
+  m_FriendTagNames:
   - DeadZone
-  hitEffect: {fileID: 0}
+  m_HitEffect: {fileID: 0}
+  m_DestroyAfterHit: 0
 --- !u!114 &957240316626980603
 MonoBehaviour:
   m_ObjectHideFlags: 0

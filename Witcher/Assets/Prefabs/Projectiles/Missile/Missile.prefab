@@ -19,6 +19,10 @@ PrefabInstance:
       propertyPath: stats.baseDamage
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 49236910151071847, guid: c7657ed3275e69d428442fcad00fd4e9, type: 3}
+      propertyPath: m_Stats.baseDamage
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 957240316626980603, guid: c7657ed3275e69d428442fcad00fd4e9, type: 3}
       propertyPath: direction.y
       value: 1
