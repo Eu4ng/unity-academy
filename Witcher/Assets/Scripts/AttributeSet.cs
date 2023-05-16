@@ -7,6 +7,7 @@ public class AttributeSet : MonoBehaviour
     public delegate void Func();
     public event Func OnDead;
     public event Func OnDamaged;
+    public event Func OnDamageApplied;
 
     /* Attributes */
     // 필드
@@ -70,13 +71,14 @@ public class AttributeSet : MonoBehaviour
     {
         if (!isDead)
         {
-            OnDamaged();
+            OnDamaged?.Invoke();
             ShowFloatingDamageText(damage);
-        }
 
-        // 실제 데미지 계산은 마지막에 진행
-        // OnDamaged 이벤트가 OnDead 이벤트보다 선행되어야한다
-        Hp -= damage * (1 - DamageReduction);
+            // 실제 데미지 계산은 마지막에 진행
+            // OnDamaged 이벤트가 OnDead 이벤트보다 선행되어야한다
+            Hp -= damage * (1 - DamageReduction);
+            OnDamageApplied?.Invoke();
+        }
     }
 
     void ShowFloatingDamageText(float _damage)
