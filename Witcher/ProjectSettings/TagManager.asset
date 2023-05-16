@@ -42,11 +42,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Character
-    uniqueID: 3655248959
+  - name: Background
+    uniqueID: 3238406421
+    locked: 0
+  - name: Projectile
+    uniqueID: 1128247219
     locked: 0
   - name: Monster
     uniqueID: 2721056583
+    locked: 0
+  - name: Character
+    uniqueID: 3655248959
+    locked: 0
+  - name: Effect
+    uniqueID: 1450519221
     locked: 0
   - name: UI
     uniqueID: 3359959409
