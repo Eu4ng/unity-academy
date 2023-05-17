@@ -1,3 +1,12 @@
+# 여러 프로젝트를 다룰 경우
+/*/[Ll]ibrary/
+/*/[Tt]emp/
+/*/[Oo]bj/
+/*/[Bb]uild/
+/*/[Bb]uilds/
+/*/[Ll]ogs/
+/*/[Uu]ser[Ss]ettings/
+
 # VS Code Editor
 /.vscode/
 
