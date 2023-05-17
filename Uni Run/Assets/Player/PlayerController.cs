@@ -79,5 +79,8 @@ public class PlayerController : MonoBehaviour
 
         // 변수 값 설정
         m_IsDead = true;
+
+        // 게임 매니저의 게임오버 처리 실행
+        GameManager.Instance.OnPlayerDead();
     }
 }
