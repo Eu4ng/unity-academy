@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
 
             // 점프
             m_Rigidbody.AddForce(new Vector2(0, m_JumpForce));
+
+            // 점프 소리 재생
             m_AudioSource.Play();
         }
         else if(Input.GetMouseButtonUp(0) && m_Rigidbody.velocity.y > 0)
