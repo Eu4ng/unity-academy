@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AudioSource))]
-public class InputController : MonoBehaviour
+public class MovementController : MonoBehaviour
 {
     // Input ¼³Á¤
     [SerializeField] protected string m_HorizontalAxis = "Horizontal";
@@ -41,13 +41,13 @@ public class InputController : MonoBehaviour
         m_Movement.Move(new Vector2(m_InputX, m_InputY), Time.fixedDeltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.contacts[0].normal.y >= 0.7f)
             m_Movement.IsGrounded = true;
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    protected virtual void OnCollisionExit2D(Collision2D collision)
     {
         m_Movement.IsGrounded = false;
     }
