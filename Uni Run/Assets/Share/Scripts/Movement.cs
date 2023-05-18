@@ -7,34 +7,53 @@ public class Movement
     [System.Serializable]
     public class Move2D
     {
-        public enum Method
-        {
-            Transform,
-            RigidbodyTransform,
-            Velocity
-        }
         public enum View
         {
             Side,
             Top
         }
-        public enum UpdateType
-        {
-            Update,
-            FixedUpdate
-        }
 
         // 움직임 설정
-        public bool m_CanMove = true;
-        public float m_Speed;
-        public Method m_Method = Method.Transform;
+        [Header("Move Parameters")]
+        public bool m_LockMove = false;
+        public float m_Speed = 5f;
         public View m_View = View.Side;
-        public UpdateType m_UpdateType = UpdateType.Update;
 
-        // Method.Velocity
-        
+        // 점프 설정
+        [Header("Jump Parameters")]
+        public int m_MaxJumpCount = 1;
+        public float m_JumpForce = 10f;
+        public AudioClip m_JumpSound;
 
-        // 움직일 게임 오브젝트
+        int m_JumpCount = 0;
+        bool m_IsGrounded = true;
+        public bool IsGrounded
+        {
+            get => m_IsGrounded;
+            set
+            {
+                // Land 후 점프 횟수 초기화
+                if (!m_IsGrounded && value)
+                    m_JumpCount = 0;
+
+                m_IsGrounded = value;
+
+                // 애니메이터 변수 동기화
+                if(m_Animator != null)
+                {
+                    m_Animator.SetBool(m_AnimIsGrounded, value);
+                    if(!m_IsGrounded && !value) // 공중에 뜬 상태에서 점프 시
+                        m_Animator.SetTrigger(m_AnimJumpAgain);
+                }
+            }
+        }
+
+        // 애니메이터 변수 설정
+        [Header("Animator Parameters")]
+        public string m_AnimIsGrounded = "IsGrounded";
+        public string m_AnimJumpAgain = "JumpAgain";
+
+        // 움직일 대상
         GameObject m_Target;
         public GameObject Target
         {
@@ -49,124 +68,99 @@ public class Movement
             }
         }
 
-        // 컴포넌트
+        // 대상 컴포넌트
         Rigidbody2D m_Rigidbody;
+        Animator m_Animator;
+        AudioSource m_AudioSource;
 
-        // PlayerController에서 사용할 메소드
+        // 초기화
         public void Init()
         {
+            // 컴포넌트 할당
             m_Rigidbody = m_Target.GetComponent<Rigidbody2D>();
+            m_Animator = m_Target.GetComponent <Animator>();
+            m_AudioSource = m_Target.GetComponent<AudioSource>();
         } // set Target시 실행됨
-        public void Move(Vector2 _inputValue)
+
+        // Move
+        public void Move(Vector2 _inputValue, float _deltaTime)
         {
+            // Lock Move 확인
+            if (m_LockMove)
+                return;
+
             // 대각 이동시 속도가 증가하는 것 방지
             Vector2 inputValue = _inputValue.normalized;
 
-            // For SetVelocity
-            if (m_Method.Equals(Method.Velocity))
-                m_Rigidbody.velocity = Vector2.zero;
-
             // x축, y축 이동
             if (inputValue.x != 0)
-                MoveRight(_inputValue.x);
+                MoveRight(_inputValue.x, _deltaTime);
             if (inputValue.y != 0)
-                MoveForward(_inputValue.y);
+                MoveForward(_inputValue.y, _deltaTime);
         }
-        public void MoveForward(float _inputValue)
+        public void MoveForward(float _inputValue, float _deltaTime)
         {
-            // Check Can Move
-            if (!m_CanMove)
-                return;
-
-            // Apply Move
-            switch(m_Method)
-            {
-                case Method.Transform:
-                    TranslateForward(_inputValue);
-                    break;
-                case Method.RigidbodyTransform:
-                    // TODO
-                    break;
-                case Method.Velocity:
-                    SetForwardVeloctiy(_inputValue);
-                    break;
-            }
+            TranslateForward(_inputValue, _deltaTime);
         }
-        public void MoveRight(float _inputValue)
+        public void MoveRight(float _inputValue, float _deltaTime)
         {
-            // Check Can Move
-            if (!m_CanMove)
-                return;
-
-            // Apply Move
-            switch (m_Method)
-            {
-                case Method.Transform:
-                    TranslateRight(_inputValue);
-                    break;
-                case Method.RigidbodyTransform:
-                    // TODO
-                    break;
-                case Method.Velocity:
-                    SetRightVeloctiy(_inputValue);
-                    break;
-            }
+            TranslateRight(_inputValue, _deltaTime);
         }
 
-        // Method.Transform
-        void TranslateForward(float _inputValue)
-        {
-            switch(m_View)
-            {
-                case View.Top:
-                    TranslateUp(_inputValue);
-                    break;
-            }
-        } // Top View 방식에서만 동작
-        void TranslateUp(float _inputValue)
-        {
-            TranslateTo(_inputValue, Vector2.up);
-        }
-        void TranslateRight(float _inputValue)
-        {
-            TranslateTo(_inputValue, Vector2.right);
-        }
-        void TranslateTo(float _inputValue, Vector2 _direction)
-        {
-            switch(m_UpdateType)
-            {
-                case UpdateType.Update:
-                    m_Target.transform.Translate(m_Speed * Time.deltaTime * _inputValue * _direction);
-                    break;
-                case UpdateType.FixedUpdate:
-                    m_Target.transform.Translate(m_Speed * Time.fixedDeltaTime * _inputValue * _direction);
-                    break;
-            }
-        }
-
-        // Method.RigidbodyTransform
-
-        // Method.RigidbodyVelocity
-        void SetForwardVeloctiy(float _inputValue)
+        // Translate
+        void TranslateForward(float _inputValue, float _deltaTime)
         {
             switch (m_View)
             {
                 case View.Top:
-                    SetUpVeloctiy(_inputValue);
+                    TranslateUp(_inputValue, _deltaTime);
+                    break;
+            }
+        } // Top View 방식에서만 동작
+        void TranslateUp(float _inputValue, float _deltaTime)
+        {
+            TranslateTo(_inputValue, _deltaTime, Vector2.up);
+        }
+        void TranslateRight(float _inputValue, float _deltaTime)
+        {
+            TranslateTo(_inputValue, _deltaTime, Vector2.right);
+        }
+        void TranslateTo(float _inputValue, float _deltaTime, Vector2 _direction)
+        {
+            m_Target.transform.Translate(m_Speed * _deltaTime * _inputValue * _direction);
+        }
+
+        // Jump
+        // Side View 방식에서만 동작
+        // Rigidbody2D 컴포넌트 필요
+        public void Jump()
+        {
+            // Rigidbody 부착 여부 확인
+            if (m_Rigidbody == null)
+                return;
+
+            // Impulse
+            switch(m_View)
+            {
+                case View.Side:
+                    if(m_JumpCount < m_MaxJumpCount)
+                    {
+                        // 변수 설정
+                        m_JumpCount++;
+
+                        // 점프 전에 y축 속도값을 0으로 설정
+                        m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, 0);
+
+                        // 점프 사운드 재생
+                        m_AudioSource.clip = m_JumpSound;
+                        m_AudioSource.Play();
+
+                        // 점프
+                        m_Rigidbody.AddForce(Vector2.up * m_JumpForce, ForceMode2D.Impulse);
+                    }
                     break;
             }
         }
-        void SetUpVeloctiy(float _inputValue)
-        {
-            SetVeloctiy(_inputValue, Vector2.up);
-        }
-        void SetRightVeloctiy(float _inputValue)
-        {
-            SetVeloctiy(_inputValue, Vector2.right);
-        }
-        void SetVeloctiy(float _inputValue, Vector2 _direction)
-        {
-            m_Rigidbody.velocity += m_Speed * _inputValue * _direction;
-        } // Rigidbody.velocity = Vector2.zero 선행되어야 함
+
     }
 }
