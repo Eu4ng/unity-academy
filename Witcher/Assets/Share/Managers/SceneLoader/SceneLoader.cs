@@ -5,8 +5,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SceneLoader : MonoBehaviour
+public class SceneLoader : MonoSingleton<SceneLoader>
 {
+    public string m_LoadingSceneName = "Loading";
+
+    // Unity Event Inspector에 등록하기 위한 용도
+    public static void ChangeScene(string _nextSceneName)
+    {
+        SceneLoader.Get().ChangeScene(_nextSceneName); // StartCoroutine은 static 메소드가 아니기 때문에 이렇게 사용
+    }
+    public void ChangeScene(string _nextSceneName, float _refreshCycleTime = 0.5f, float _waitingTime = 1f)
+    {
+        ChangeScene(_nextSceneName, m_LoadingSceneName, _refreshCycleTime, _waitingTime);
+    }
     public void ChangeScene(string _nextSceneName, string _loadingSceneName, float _refreshCycleTime = 0.5f, float _waitingTime = 1f)
     {
         StartCoroutine(Loading(_nextSceneName, _loadingSceneName, _refreshCycleTime, _waitingTime));
