@@ -28,9 +28,8 @@ public class EffectActor : MonoBehaviour
 
     private void Start()
     {
-        m_EffectPool = GetComponent<GameObjectPoolTracker>().Pool;
-        if (m_EffectPool == null)
-            Debug.Log("No EffectPool");
+        GameObjectPoolTracker gameObjectPoolTracker = GetComponent<GameObjectPoolTracker>();
+        if(gameObjectPoolTracker != null) m_EffectPool = gameObjectPoolTracker.Pool;
     }
 
     IEnumerator CheckEffectEnd()
@@ -38,7 +37,13 @@ public class EffectActor : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(m_PlayTime + 0.1f);
-            if (!m_ParticleSystem.IsAlive()) m_EffectPool.Release(gameObject);
+            if (!m_ParticleSystem.IsAlive())
+            {
+                if(m_EffectPool != null)
+                    m_EffectPool.Release(gameObject);
+                else
+                    Destroy(gameObject);
+            }
         }
     }
 }

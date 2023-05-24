@@ -16,9 +16,8 @@ public class BulletActor : MonoBehaviour
     }
     private void Start()
     {
-        m_BulletPool = GetComponent<GameObjectPoolTracker>().Pool;
-        if (m_BulletPool == null)
-            Debug.Log("No BulletPool");
+        GameObjectPoolTracker gameObjectPoolTracker = GetComponent<GameObjectPoolTracker>();
+        if(gameObjectPoolTracker != null) m_BulletPool = gameObjectPoolTracker.Pool;
     }
     private void OnCollisionEnter(Collision collision)
     {

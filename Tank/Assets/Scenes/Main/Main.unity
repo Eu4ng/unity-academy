@@ -436,7 +436,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1055858428}
-  - component: {fileID: 1055858427}
+  - component: {fileID: 1055858430}
   - component: {fileID: 1055858429}
   m_Layer: 0
   m_Name: Object Pools
@@ -445,22 +445,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1055858427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055858426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c9d9b67f71650a408635390734600ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Prefab: {fileID: 5622264523037864542, guid: bff522bf7b7e5064fbdaca112dd08983, type: 3}
-  m_MaxSize: 10
-  m_InstanceRatio: 0.5
-  m_DefferActive: 1
 --- !u!4 &1055858428
 Transform:
   m_ObjectHideFlags: 0
@@ -489,6 +473,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Prefab: {fileID: 6793571443974351863, guid: 19a4c192395e6624bbace37ff6ad03a5, type: 3}
+  m_MaxSize: 10
+  m_InstanceRatio: 0.5
+  m_DefferActive: 1
+--- !u!114 &1055858430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055858426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c9d9b67f71650a408635390734600ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Prefab: {fileID: 5622264523037864542, guid: bff522bf7b7e5064fbdaca112dd08983, type: 3}
   m_MaxSize: 10
   m_InstanceRatio: 0.5
   m_DefferActive: 1

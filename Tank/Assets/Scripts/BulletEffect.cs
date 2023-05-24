@@ -15,7 +15,14 @@ public class BulletEffect : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // HitEffect 생성
-        GameObject hitEffect = m_HitEffectPool.Get();
+        GameObject hitEffect;
+        if(m_HitEffectPool == null)
+        {
+            hitEffect = Instantiate(m_HitEffect);
+            hitEffect.SetActive(false);
+        }
+        else
+            hitEffect = m_HitEffectPool.Get();
 
         // 스폰 위치 설정
         hitEffect.transform.position = collision.contacts[0].point;

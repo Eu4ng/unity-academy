@@ -24,7 +24,16 @@ public class FireArm : MonoBehaviour
     private void Fire()
     {
         // Bullet 생성
-        GameObject bullet = m_BulletPool.Get();
+        GameObject bullet;
+        if (m_BulletPool != null)
+            bullet = m_BulletPool.Get();
+        else
+        {
+            m_BulletPrefab.SetActive(false);
+            bullet = Instantiate(m_BulletPrefab);
+            m_BulletPrefab.SetActive(true);
+        }
+
 
         // Spawn Transform 설정
         bullet.transform.position = m_Muzzle.position;
