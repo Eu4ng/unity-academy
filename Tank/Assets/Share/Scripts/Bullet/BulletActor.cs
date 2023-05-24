@@ -8,7 +8,12 @@ public class BulletActor : MonoBehaviour
 {
     // 멤버 변수
     IObjectPool<GameObject> m_BulletPool;
+    bool m_Collided = false;
 
+    private void OnEnable()
+    {
+        m_Collided = false;
+    }
     private void Start()
     {
         m_BulletPool = GetComponent<GameObjectPoolTracker>().Pool;
@@ -17,6 +22,12 @@ public class BulletActor : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        // 한 번만 충돌 처리
+        if (m_Collided) return;
+        else m_Collided = true;
+
+        // 데미지 가한 후 파괴
+        GetComponent<AbilityEffect>().ApplyEffect(collision.gameObject);
         DestroyBullet();
     }
 
