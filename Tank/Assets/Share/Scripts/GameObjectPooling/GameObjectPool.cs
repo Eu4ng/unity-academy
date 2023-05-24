@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -49,6 +50,9 @@ public class GameObjectPool : MonoBehaviour
         // 프리팹의 인스턴스 생성
         m_Prefab.SetActive(false);
         GameObject instance = Instantiate(m_Prefab);
+        m_Prefab.SetActive(true);
+
+        // 인스턴스 그룹화 
         instance.transform.SetParent(m_ParentObject.transform);
 
         // 인스턴스가 속한 Pool 기록
